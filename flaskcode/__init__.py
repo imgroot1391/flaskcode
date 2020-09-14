@@ -17,7 +17,7 @@ __status__ = __pkginfo__.status
 
 
 blueprint = Blueprint(
-    'flaskcode',
+    'editor',
     __name__,
     static_folder='static',
     template_folder='templates',
@@ -26,7 +26,7 @@ blueprint = Blueprint(
 
 @blueprint.url_value_preprocessor
 def manipulate_url_values(endpoint, values):
-    if endpoint != 'flaskcode.static':
+    if endpoint != 'editor.static':
         resource_basepath = current_app.config.get('FLASKCODE_RESOURCE_BASEPATH')
         if not (resource_basepath and os.path.isdir(resource_basepath)):
             abort(500, '`FLASKCODE_RESOURCE_BASEPATH` is not a valid directory path')
